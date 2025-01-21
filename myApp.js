@@ -12,8 +12,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/json", (req,res)=>{
-  res.json({"message":"Hello json" })
-})
+app.get('/json', (req, res) => {
+  const isUppercase = process.env.MESSAGE_STYLE === 'uppercase';
+  const message = 'Hello json';
+  res.json({ message: isUppercase ? message.toUpperCase() : message });
+});
 
 module.exports = app;
